@@ -34,20 +34,9 @@ def counting_sort_on_digit(A, k, d, digit_pos):
 
     def subkey(key):
         """Helper function to extract the digit at the given position from the key."""
-        str_key = str(key).zfill(d)
-        return int(str_key[digit_pos])
+        raise NotImplementedError
 
-    n = len(A)
-    counts = [0 for _ in range(k)]
-    output = [None for _ in range(n)]
-    for key in A:
-        counts[subkey(key)] += 1
-    for i in range(1, k):
-        counts[i] += counts[i - 1]
-    for key in reversed(A):
-        output[counts[subkey(key)] - 1] = key
-        counts[subkey(key)] = counts[subkey(key)] - 1
-    return output
+    raise NotImplementedError
 
 
 def radix_sort_lsd(A, d, k):
@@ -62,11 +51,7 @@ def radix_sort_lsd(A, d, k):
     Returns:
         The sorted array.
     """
-    for digit_pos in range(d - 1, -1, -1):
-        # we use counting sort as our stable sort
-        print(A)
-        A = counting_sort_on_digit(A, k, d, digit_pos)
-    return A
+    raise NotImplementedError
 
 
 def main():

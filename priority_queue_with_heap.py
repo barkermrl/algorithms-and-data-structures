@@ -29,7 +29,7 @@ def left_child(i: int) -> int:
     Returns:
         The index of the left child of node i.
     """
-    return 2 * i + 1
+    raise NotImplementedError
 
 
 def right_child(i: int) -> int:
@@ -41,7 +41,7 @@ def right_child(i: int) -> int:
     Returns:
         The index of the right child of node i.
     """
-    return 2 * i + 2
+    raise NotImplementedError
 
 
 def parent(i: int) -> int:
@@ -53,26 +53,15 @@ def parent(i: int) -> int:
     Returns:
         The index of the parent of node i.
     """
-    return (i - 1) // 2
+    raise NotImplementedError
 
 
 def max_heapify(A: list, heap_size: int, i: int):
-    left = left_child(i)
-    right = right_child(i)
-    max_i = i
-    if left < heap_size and A[left]["key"] > A[max_i]["key"]:
-        max_i = left
-    if right < heap_size and A[right]["key"] > A[max_i]["key"]:
-        max_i = right
-    if max_i != i:
-        A[i], A[max_i] = A[max_i], A[i]
-        max_heapify(A, heap_size, max_i)
+    raise NotImplementedError
 
 
 def build_max_heap(A):
-    heap_size = len(A)
-    for i in range(heap_size // 2 - 1, -1, -1):
-        max_heapify(A, heap_size, i)
+    raise NotImplementedError
 
 
 class MaxPriorityQueue:
@@ -91,7 +80,7 @@ class MaxPriorityQueue:
         Returns:
             The maximum value in the priority queue.
         """
-        return self.A[0]["value"]
+        raise NotImplementedError
 
     def pop_max(self):
         """Remove the maximum value from the priority queue.
@@ -99,18 +88,7 @@ class MaxPriorityQueue:
         Returns:
             The maximum value in the priority queue.
         """
-        max_item = self.A[0]
-        last_item = self.A[self.heap_size - 1]
-        self.A[0] = last_item
-
-        # update the value2index mapping (note that the value in the RBT is the index in
-        # the underlying array for the heap)
-        self.value2index[last_item["value"]] = 0
-        del self.value2index[max_item["value"]]
-
-        self.heap_size -= 1
-        max_heapify(self.A, self.heap_size, 0)
-        return max_item["value"]
+        raise NotImplementedError
 
     def increase_key(self, key, value):
         """Increase the key of the value in the priority queue.
@@ -119,15 +97,7 @@ class MaxPriorityQueue:
             key: the new key of the value
             value: the value to increase the key of
         """
-        # locate the position of `value` in the underlying array
-        i = self.value2index[value]
-
-        assert key >= self.A[i]["key"], f"requested to decrease key {self.A[i]['key']} to {key}"
-        self.A[i]["key"] = key # increase the key
-        while i > 0 and self.A[i]["key"] > self.A[parent(i)]["key"]:
-            self.value2index[self.A[i]["value"]], self.value2index[self.A[parent(i)]["value"]] = parent(i), i
-            self.A[i], self.A[parent(i)] = self.A[parent(i)], self.A[i]
-            i = parent(i)
+        raise NotImplementedError
 
     def insert(self, key, value):
         """Insert value with given key into the priority queue
@@ -136,16 +106,7 @@ class MaxPriorityQueue:
             key: the key of the value to insert
             value: the value to insert
         """
-        if self.heap_size == len(self.A):
-            # expand underlying array to avoid heap overflow
-            self.A.append(None)
-        # use key that is guaranteed to be valid
-        initial_key = float("-inf")
-        self.A[self.heap_size] = {"key": initial_key, "value": value}
-        self.heap_size += 1
-        assert value not in self.value2index, f"value {value} already in priority queue"
-        self.value2index[value] = self.heap_size - 1
-        self.increase_key(key, value)
+        raise NotImplementedError
 
     def __repr__(self):
         summary = "\n".join(str(x) for x in self.A[:self.heap_size])

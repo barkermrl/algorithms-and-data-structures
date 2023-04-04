@@ -23,15 +23,7 @@ def lomuto_partition(A: list, low: int, high: int) -> int:
     Returns:
         The index of the pivot after partitioning.
     """
-    pivot = high
-    pivot_val = A[pivot]
-    i = low
-    for j in range(low, high):
-        if A[j] <= pivot_val:
-            A[i], A[j] = A[j], A[i]
-            i += 1
-    A[i], A[pivot] = A[pivot], A[i]
-    return i
+    raise NotImplementedError
 
 
 def quicksort_with_lomuto_partition(A: list, low: int = 0, high: int = None):
@@ -43,12 +35,7 @@ def quicksort_with_lomuto_partition(A: list, low: int = 0, high: int = None):
         low: the index of the zeroth element of the subarray to be sorted.
         high: the index of the last element of the subarray to be sorted.
     """
-    if high is None:
-        high = len(A) - 1
-    if low < high:
-        pivot = lomuto_partition(A, low, high)
-        quicksort_with_lomuto_partition(A, low, pivot - 1)
-        quicksort_with_lomuto_partition(A, pivot + 1, high)
+    raise NotImplementedError
 
 
 def hoare_partition(A: list, low: int, high: int) -> int:
@@ -93,13 +80,7 @@ def quicksort_with_hoare_partition(A: list, low: int = 0, high: int = None):
         low: the index of the zeroth element of the subarray to be sorted.
         high: the index of the last element of the subarray to be sorted.
     """
-    if high is None:
-        high = len(A) - 1
-    if low < high:
-        pivot = hoare_partition(A, low, high)
-        # NOTE: we use pivot instead of pivot - 1 for the left recursion
-        quicksort_with_hoare_partition(A, low, pivot)
-        quicksort_with_hoare_partition(A, pivot + 1, high)
+    raise NotImplementedError
 
 
 def main():

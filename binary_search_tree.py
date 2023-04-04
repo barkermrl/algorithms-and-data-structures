@@ -15,16 +15,13 @@ If you would like a fully object-oriented Binary Search Tree implementation, I r
 class BinarySearchTree:
 
     def __init__(self, root=None):
-        self.root = root
+        raise NotImplementedError
 
 
 class Node:
 
     def __init__(self, key, parent=None, left=None, right=None):
-        self.key = key
-        self.parent = parent
-        self.left = left
-        self.right = right
+        raise NotImplementedError
 
     def __str__(self):
         summary = f"Node({self.key})"
@@ -44,18 +41,7 @@ def insert(bst: BinarySearchTree, new_node: Node):
         bst: the tree to insert into.
         new_node: the node to insert.
     """
-    node = bst.root
-    parent = None
-    while node:
-        parent = node
-        node = node.left if new_node.key < node.key else node.right
-    new_node.parent = parent
-    if not parent:  # handle the case when the tree is empty
-        bst.root = new_node
-    elif new_node.key < parent.key:
-        parent.left = new_node
-    else:
-        parent.right = new_node
+    raise NotImplementedError
 
 
 def search(key: int, node: Node):
@@ -65,12 +51,7 @@ def search(key: int, node: Node):
         key: the key to search for.
         node: the node whose subtree we wish to search
     """
-    while node and node.key != key:
-        if key < node.key:
-            node = node.left
-        else:
-            node = node.right
-    return node
+    raise NotImplementedError
 
 
 def delete(bst: BinarySearchTree, node: Node):
@@ -80,19 +61,7 @@ def delete(bst: BinarySearchTree, node: Node):
         bst: the tree to delete from.
         node: the node to delete.
     """
-    if not node.right:  # node to be deleted has no right child
-        shift_nodes(bst, node, node.right)  # node to be deleted has no left child
-    elif not node.left:
-        shift_nodes(bst, node, node.right)
-    else:  # node to be deleted has both a left and right child
-        successor = minimum(node.right)
-        if successor != node.right:
-            shift_nodes(bst, successor, successor.right)
-            successor.right = node.right
-            successor.right.parent = successor
-        shift_nodes(bst, node, successor)
-        successor.left = node.left
-        successor.left.parent = successor
+    raise NotImplementedError
 
 
 def shift_nodes(bst: BinarySearchTree, old_node: Node, new_node: Node):
@@ -103,14 +72,7 @@ def shift_nodes(bst: BinarySearchTree, old_node: Node, new_node: Node):
         old_node: the node to be replaced.
         new_node: the node (and subtree) that is shifted.
     """
-    if not old_node.parent:
-        bst.root = new_node
-    elif old_node == old_node.parent.left:
-        old_node.parent.left = new_node
-    else:
-        old_node.parent.right = new_node
-    if new_node:
-        new_node.parent = old_node.parent
+    raise NotImplementedError
 
 
 def minimum(node: Node):
@@ -119,9 +81,7 @@ def minimum(node: Node):
     Args:
         node: Node - the root of the tree to search.
     """
-    while node.left:
-        node = node.left
-    return node
+    raise NotImplementedError
 
 
 def maximum(node: Node):
@@ -130,9 +90,7 @@ def maximum(node: Node):
     Args:
         node: Node - the root of the tree to search.
     """
-    while node.right:
-        node = node.right
-    return node
+    raise NotImplementedError
 
 
 def inorder(node):
@@ -141,10 +99,7 @@ def inorder(node):
     Args:
         node: Node - the root of the tree to traverse.
     """
-    if node is not None:
-        inorder(node.left)
-        print(node.key, end=" ")
-        inorder(node.right)
+    raise NotImplementedError
 
 
 def preorder(node):
@@ -153,10 +108,7 @@ def preorder(node):
     Args:
         node: Node - the root of the tree to traverse.
     """
-    if node is not None:
-        print(node.key, end=" ")
-        preorder(node.left)
-        preorder(node.right)
+    raise NotImplementedError
 
 
 def postorder(node):
@@ -165,10 +117,7 @@ def postorder(node):
     Args:
         node: Node - the root of the tree to traverse.
     """
-    if node is not None:
-        postorder(node.left)
-        postorder(node.right)
-        print(node.key, end=" ")
+    raise NotImplementedError
 
 
 def main():

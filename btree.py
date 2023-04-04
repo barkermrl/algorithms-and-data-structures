@@ -14,9 +14,7 @@ from pathlib import Path
 class Node:
 
     def __init__(self, keys=None, children=None, is_leaf=True):
-        self.keys = keys if keys else []
-        self.children = children if children else []
-        self.is_leaf = is_leaf
+        raise NotImplementedError
 
     def is_full(self, t):
         """Check if the node is full (i.e. has 2t-1 keys).
@@ -27,7 +25,7 @@ class Node:
         Returns:
             True if the node is full, False otherwise.
         """
-        return len(self.keys) == 2 * t - 1
+        return NotImplementedError
 
     def __str__(self):
         summary = f"Node({self.keys})"
@@ -41,9 +39,7 @@ class Btree:
     def __init__(self, t, root=None, verbose=False):
         """Create a B-tree with minimum degree t.
         """
-        self.t = t
-        self.root = root
-        self.verbose = verbose
+        raise NotImplementedError
 
     def search(self, u, key):
         """Find the node containing key in the subtree rooted at u
@@ -56,16 +52,7 @@ class Btree:
             The node containing key, together with the position of the key
             or None if key is not in the tree.
         """
-        # linear scan to find index of key
-        i = 0
-        while i < len(u.keys) and key > u.keys[i]:
-            i += 1
-        if i < len(u.keys) and key == u.key[i]:
-            return (u, i)
-        if u.is_leaf:
-            return None
-        self.read_block(u.children[i])
-        return self.search(u.children[i], key)
+        raise NotImplementedError
 
     def read_block(self, node: Node):
         if self.verbose:
@@ -81,10 +68,7 @@ class Btree:
         Args:
             key: the key to insert.
         """
-        root = self.root
-        if root.is_full(t=self.t):  # root has 2t - 1 keys
-            root = self.split_root()
-        self.insert_not_full(root, key)
+        raise NotImplementedError
 
     def split_root(self):
         """
@@ -309,9 +293,7 @@ class Btree:
         Returns:
             The minimum key in the tree rooted at node.
         """
-        while not node.is_leaf:
-            node = node.children[0]
-        return node.keys[0]
+        raise NotImplementedError
 
     def maximum(self, node: Node) -> Node:
         """Find the maximum key in the subtree rooted at node.
@@ -322,9 +304,7 @@ class Btree:
         Returns:
             The maximum key in the subtree.
         """
-        while not node.is_leaf:
-            node = node.children[-1]
-        return node.keys[-1]
+        raise NotImplementedError
 
     def viz_btree(self, dest_path: Path, refresh: bool = False):
         # We only perform the import here to prevent people from having to install

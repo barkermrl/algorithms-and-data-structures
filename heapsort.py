@@ -23,7 +23,7 @@ def left_child(i: int) -> int:
     Returns:
         The index of the left child of node i.
     """
-    return 2 * i + 1
+    raise NotImplementedError
 
 
 def right_child(i: int) -> int:
@@ -35,7 +35,7 @@ def right_child(i: int) -> int:
     Returns:
         The index of the right child of node i.
     """
-    return 2 * i + 2
+    raise NotImplementedError
 
 
 def parent(i: int) -> int:
@@ -47,50 +47,25 @@ def parent(i: int) -> int:
     Returns:
         The index of the parent of node i.
     """
-    return (i - 1) // 2
+    raise NotImplementedError
 
 
 def max_heapify(A: list, heap_size: int, i: int):
-    left = left_child(i)
-    right = right_child(i)
-    max_i = i
-    if left < heap_size and A[left] > A[max_i]:
-        max_i = left
-    if right < heap_size and A[right] > A[max_i]:
-        max_i = right
-    if max_i != i:
-        A[i], A[max_i] = A[max_i], A[i]
-        max_heapify(A, heap_size, max_i)
+    raise NotImplementedError
 
 
 def build_max_heap(A):
-    heap_size = len(A)
-    for i in range(heap_size // 2 - 1, -1, -1):
-        max_heapify(A, heap_size, i)
+    raise NotImplementedError
 
 
 def heapsort(A):
     """An in-place implementation of heapsort."""
-    build_max_heap(A)
-    heap_size = len(A)
-    while heap_size > 1:
-        A[0], A[heap_size - 1] = A[heap_size - 1], A[0]
-        heap_size = heap_size - 1
-        max_heapify(A, heap_size, 0)
+    raise NotImplementedError
 
 
 def naive_heapsort(A):
     """A naive implementation of heapsort that requires additional memory"""
-    build_max_heap(A)
-    heap_size = len(A)
-    sorted_A = [None for _ in range(len(A))]
-    while heap_size > 1:
-        sorted_A[heap_size - 1] = A[0]
-        A[0], A[heap_size - 1] = A[heap_size - 1], A[0]
-        heap_size = heap_size - 1
-        max_heapify(A, heap_size, 0)
-    sorted_A[0] = A[0]
-    return sorted_A
+    raise NotImplementedError
 
 
 def main():

@@ -20,13 +20,7 @@ def bucket_sort(A: list):
     Returns:
         The sorted array.
     """
-    num_buckets = len(A)
-    buckets = [[] for _ in range(num_buckets)]
-    for key in A:   # scatter
-        buckets[int(num_buckets * key)].append(key)
-    for bucket in buckets:
-        insertion_sort(bucket)
-    return [x for bucket in buckets for x in bucket]  # gather
+    raise NotImplementedError
 
 
 def insertion_sort(A: list):
@@ -38,14 +32,7 @@ def insertion_sort(A: list):
     Returns:
         The sorted array.
     """
-    for j in range(1, len(A)):
-        key = A[j]
-        i = j - 1
-        while i >= 0 and A[i] > key:
-            A[i + 1] = A[i]
-            i -= 1
-        A[i + 1] = key
-    return A
+    raise NotImplementedError
 
 
 def main():

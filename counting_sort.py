@@ -25,17 +25,7 @@ def counting_sort(A, k):
 
     NOTE: Counting sort assumes that all inputs are integers between 0 and k-1 inclusive.
     """
-    n = len(A)
-    counts = [0 for _ in range(k)]
-    output = [None for _ in range(n)]
-    for key in A:
-        counts[key] += 1
-    for i in range(1, k):
-        counts[i] += counts[i - 1]
-    for key in reversed(A):
-        output[counts[key] - 1] = key
-        counts[key] = counts[key] - 1
-    return output
+    raise NotImplementedError
 
 
 def main():

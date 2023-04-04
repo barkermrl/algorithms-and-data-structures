@@ -21,10 +21,7 @@ class HashTable:
             init_size: the initial size of the hash table.
             resize_threshold: the load factor at which the hash table should be resized.
         """
-        self.slots = [None for _ in range(init_size)]
-        self.values = [None for _ in range(init_size)]
-        self.slots_filled = 0
-        self.resize_threshold = resize_threshold
+        raise NotImplementedError
 
     def insert(self, key, value):
         """Insert a new (key, value) pair into the hash table.
@@ -34,18 +31,7 @@ class HashTable:
             value: the value to insert.
 
         """
-        slot = self._hash(key)
-
-        anticipated_load_factor = (self.slots_filled + 1) / len(self.slots)
-        if anticipated_load_factor > self.resize_threshold:
-            self._increase_size()
-
-        while (self.slots[slot] != key) and (self.slots[slot] is not None):
-            slot = (slot + 1) % len(self.slots)
-
-        self.slots[slot] = key
-        self.values[slot] = value
-        self.slots_filled += 1
+        raise NotImplementedError
 
     def _increase_size(self):
         curr_size = len(self.slots)
@@ -59,7 +45,7 @@ class HashTable:
         Args:
             key: the key to hash.
         """
-        return key % len(self.slots)
+        raise NotImplementedError
 
     def search(self, key):
         """Search for a value with a given key in the hash table.
@@ -67,19 +53,15 @@ class HashTable:
         Args:
             key: the key to search for.
         """
-        slot = self._probe(key)
-        return self.values[slot]
-
+        raise NotImplementedError
+    
     def delete(self, key):
         """Delete the (key, value) pair with the given key.
 
         Args:
             key: the key to delete.
         """
-        slot = self._probe(key)
-        self.slots[slot] = None
-        self.values[slot] = None
-        self.slots_filled -= 1
+        raise NotImplementedError
 
     def _probe(self, key):
         """Probe for a slot with the given key.
@@ -87,12 +69,7 @@ class HashTable:
         Args:
             key: the key to probe for.
         """
-        slot = self._hash(key)
-        while self.slots[slot] != key:
-            if self.slots[slot] is None:
-                raise KeyError(f"Could not find {key} in hash table")
-            slot = (slot + 1) % len(self.slots)
-        return slot
+        raise NotImplementedError
 
     def __repr__(self):
         summary = (f"Hash table with {self.slots_filled} entries\n"
@@ -107,7 +84,7 @@ def num2letter(index):
     Args:
         index: the index of the character.
     """
-    return chr(index + ord("a"))
+    raise NotImplementedError
 
 
 if __name__ == "__main__":

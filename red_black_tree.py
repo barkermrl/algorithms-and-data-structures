@@ -59,13 +59,7 @@ class RedBlackTree:
         Args:
             key: the key to search for
         """
-        node = self.root
-        while node is not self.nil and node.key != key:
-            if key < node.key:
-                node = node.left
-            else:
-                node = node.right
-        return node
+        raise NotImplementedError
 
     def minimum(self, node: Node) -> Node:
         """Find the minimum node in the subtree rooted at node.
@@ -76,9 +70,7 @@ class RedBlackTree:
         Returns:
             The minimum node in the tree rooted at node.
         """
-        while node.left is not self.nil:
-            node = node.left
-        return node
+        raise NotImplementedError
 
     def maximum(self, node: Node) -> Node:
         """Find the maximum node in the subtree rooted at node.
@@ -89,9 +81,7 @@ class RedBlackTree:
         Returns:
             The maximum node in the tree.
         """
-        while node.right is not self.nil:
-            node = node.right
-        return node
+        raise NotImplementedError
 
     def inorder(self, node: Node):
         """Perform an inorder traversal of the tree.
@@ -99,10 +89,7 @@ class RedBlackTree:
         Args:
             node: Node - the root of the tree to traverse.
         """
-        if node is not self.nil:
-            self.inorder(node.left)
-            print(node.key, end=" ")
-            self.inorder(node.right)
+        raise NotImplementedError
 
     def preorder(self, node: Node):
         """Perform a preorder traversal of the tree rooted at node.
@@ -110,10 +97,7 @@ class RedBlackTree:
         Args:
             node: Node - the root of the tree to traverse.
         """
-        if node is not self.nil:
-            print(node.key, end=" ")
-            self.preorder(node.left)
-            self.preorder(node.right)
+        raise NotImplementedError
 
     def postorder(self, node: Node):
         """Perform a postorder traversal of the tree rooted at node.
@@ -121,40 +105,15 @@ class RedBlackTree:
         Args:
             node: Node - the root of the tree to traverse.
         """
-        if node is not self.nil:
-            self.postorder(node.left)
-            self.postorder(node.right)
-            print(node.key, end=" ")
+        raise NotImplementedError
 
     def rotate_left(self, u: Node):
         """Rotate the subtree rooted at u to the left."""
-        v = u.right
-        u.right = v.left
-        if v.left != self.nil:
-            v.left.parent = u
-        v.parent = u.parent
-        if not u.parent:
-            self.root = v
-        elif u == u.parent.left:
-            u.parent.left = v
-        else:
-            u.parent.right = v
-        v.left, u.parent = u, v
+        raise NotImplementedError
 
     def rotate_right(self, v: Node):
         """Rotate the subtree rooted at v to the right."""
-        u = v.left
-        v.left = u.right
-        if u.right != self.nil:
-            u.right.parent = v
-        u.parent = v.parent
-        if not v.parent:
-            self.root = u
-        elif v == v.parent.right:
-            v.parent.right = u
-        else:
-            v.parent.left = u
-        u.right, v.parent = v, u
+        raise NotImplementedError
 
     def insert(self, new_node: Node):
         """Insert a new node into the tree.
